@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include ('../partials/head', {title: "Favoritos"}) %> 
+
+<body class="body">
+
+    <%- include ('../partials/header') %> 
+
+    <main class="main">
+        <section class="section-sec__favoritos">
+            <h3 class="section-sec__titulo">Favoritos</h3>
+            <div class="section-sec__cont-arts">
+                <% favoritos.forEach(element => { %>
+                    <article class="section-sec__arts">
+                        <div class="section-sec__cont-picture-star">
+                            <picture class="section-sec__picture">
+                                <a href="/products/detail/<%= element.id %>">
+                                    <img src="../images/juegos/<%= element.images[0].img_url %>" alt="<% element.alt %>" class="section-sec__imgs">
+                                </a>
+                            </picture>
+                            <div class="section-sec__cont-star">
+                                <i class="fas fa-star section-sec__star"></i>
+                            </div>
+                        </div>
+
+                        <div class="section-sec__cont-datos">
+                            <span class="section-sec__spans"><%= element.name_game %></span>
+                            <span class="section-sec__spans">$ <%= element.price %></span>
+                            <span class="button-carrito">Añadir al carrito</span>
+                        </div>
+                    </article>
+                </a>
+                <% }) %>
+            </div>
+        </section>
+    </main>
+
+    <%- include ('../partials/footer') %> 
+
+</body>
+</html>

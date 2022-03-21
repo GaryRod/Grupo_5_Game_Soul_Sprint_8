@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include ('../partials/head', {title: "Búsqueda"}) %>
+
+<body class="body">
+
+    <%- include ('../partials/header') %> 
+
+    <main class="main">
+        <h3 class="section-sec__titulo">La búsqueda de "<%= search %>" dio <%= productos.length %> resultados!</h3>
+        <div class="section-sec__cont-arts">
+            <% if (productos.length > 0) {
+                productos.forEach(function(element){ %>
+                
+                    <article class="section-sec__arts">
+
+                        <div class="section-sec__cont-picture-star">
+                            <picture class="section-sec__picture">
+                                <a href="/products/detail/<%= element.id %>">
+                                    <img src="/images/juegos/<%= element.images[0].img_url %>" alt="El juego es <%= element.name_game %>" class="section-sec__imgs">
+                                </a>
+                            </picture>
+                        </div>
+
+                        <div class="section-sec__cont-datos">
+                            <span class="section-sec__spans"><%= element.name_game %></span>
+                            <span class="section-sec__spans">$ <%= element.price %></span>
+                            <span class="button-carrito">Añadir al carrito</span>
+                        </div>
+                    </article>
+                <% })} else { %>
+                        <div class="col-12">
+                            <h3 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h3>
+                        </div>
+                <% } %>
+        </div>
+    </main>
+
+    <%- include ('../partials/footer') %>
+
+</body>
+</html>

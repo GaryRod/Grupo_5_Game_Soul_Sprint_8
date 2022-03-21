@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include ('../partials/head', {title: "Crear Producto"}) %>
+
+<body class="body body--createProduct body--registro-login">
+
+    <%- include ('../partials/header') %>
+
+    <main class="main main--createProduct">
+        <form action="" method="post" id="formulario_crear_producto" class="formCreateProduct animate__animated animate__fadeInDown" enctype="multipart/form-data">
+
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Nombre del producto:</h5>
+                <input type="text" class="input__create-product" id="nombre_crear_producto" name="nombre" placeholder="Ej: GameSoul" value="<%= locals.oldData ? oldData.nombre : null %>">
+                <% if (locals.errors && errors.nombre) { %>
+                    <p class="text-danger"><%= errors.nombre.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_nombre"></p>
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Descripción del producto:</h5>
+                <textarea class="input__create-product" id="descripcion_crear_producto" name="descripcion" placeholder="Ej: GameSoul es un juego multiplataforma..." cols="30" rows="5"><%= locals.oldData ? oldData.descripcion : null %></textarea>
+                <% if (locals.errors && errors.descripcion) { %>
+                    <p class="text-danger"><%= errors.descripcion.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_descripcion"></p>
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Insertá una imagen:</h5>
+                <input type="file" id="imagen_crear_producto" accept=".png, .jpg" multiple name="imagen">
+                <% if (locals.errors && errors.imagen) { %>
+                    <p class="text-danger"><%= errors.imagen.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_imagen"></p>
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Seleccioná un género:</h5>
+                <select class="input__create-product" id="genero_crear_producto" name="genero">
+                    <option disabled selected>- Género -</option>
+                    <% allGenres.forEach(genero => { %>
+                        <option value="<%= genero.id %>" <%= locals.oldData && oldData.genero == genero.id ? "selected" : "" %>> <%= genero.name_genre %> </option>
+                    <% }) %>
+                </select>
+                <% if (locals.errors && errors.genero) { %>
+                    <p class="text-danger"><%= errors.genero.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_genero"></p>
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Seleccioná una edición:</h5>
+                <select class="input__create-product" id="edicion_crear_producto" name="edicion">
+                    <option disabled selected>- Edición -</option>
+                    <% allEditions.forEach(edicion => { %>
+                        <option value="<%= edicion.id %>" <%= locals.oldData && oldData.edicion == edicion.id ? "selected" : "" %>> <%= edicion.name_editions %> </option>
+                    <% }) %>
+                </select>
+                <% if (locals.errors && errors.edicion) { %>
+                    <p class="text-danger"><%= errors.edicion.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_edicion"></p>
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Escribe un precio:</h5>
+                <input type="text" class="input__create-product" name="precio" id= "precio_crear_producto" placeholder="Ej: 2000" value="<%= locals.oldData ? oldData.precio : null %>">
+                <% if (locals.errors && errors.precio) { %>
+                    <p class="text-danger"><%= errors.precio.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_precio"></p>
+            <div class="form__cont-elements">
+                <input type="submit" class="boton-enviar-producto" value="Crear Producto">
+            </div>
+        </form>
+    </main> 
+
+    <%- include ('../partials/footer') %>
+    <script src="/js/validations/createProductJS.js"></script>
+</body>
+</html>
+
+
