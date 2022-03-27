@@ -8,36 +8,114 @@ window.addEventListener('load', function(){
     let precio = document.querySelector('#precio_crear_producto')
     let genero = document.querySelector("#genero_crear_producto")
     let edicion = document.querySelector('#edicion_crear_producto')
+    
+    //Campo de <p> para los errores
+    
+    let errorNombre = document.querySelector('#error_nombre')
+    let errorDescripcion = document.querySelector('#error_descripcion')
+    let errorImagen = document.querySelector('#error_imagen')
+    let errorPrecio = document.querySelector('#error_precio')
+    let errorGenero = document.querySelector('#error_genero')
+    let errorEdicion = document.querySelector('#error_edicion')
+
+    nombre.addEventListener('blur', function(){
+        if(this.value == '' || nombre.value.length < 5){   
+        errorNombre.textContent = 'El nombre debe contener mínimo 5 caracteres'
+            nombre.classList.add("errorFatal");
+            errorNombre.style.textAlign = 'center'           
+        }else{
+            errorNombre.textContent = ''
+            nombre.classList.remove("errorFatal");
+    }
+    })
+    descripcion.addEventListener('blur', function(){
+        if(this.value == '' || descripcion.value.length <20){   
+            errorDescripcion.textContent = 'La descripción debe contener mínimo 20 caracteres'
+                descripcion.classList.add("errorFatal");
+                errorDescripcion.style.textAlign = 'center'           
+            }else{
+                errorDescripcion.textContent = ''
+                descripcion.classList.remove("errorFatal");
+        }
+    })
+
+    genero.addEventListener('blur', function(){
+        if(this.value == '- Género -'){   
+            errorGenero.textContent = 'Seleccione un género'
+                genero.classList.add("errorFatal");
+                errorGenero.style.textAlign = 'center'           
+            }else{
+                errorGenero.textContent = ''
+                genero.classList.remove("errorFatal");
+        }
+    })
+    edicion.addEventListener('blur', function(){
+        if(this.value == '- Edición -'){   
+            errorEdicion.textContent = 'Seleccione una edición'
+                edicion.classList.add("errorFatal");
+                errorEdicion.style.textAlign = 'center'           
+            }else{
+                errorEdicion.textContent = ''
+                edicion.classList.remove("errorFatal");
+        }
+    })
+
+    precio.addEventListener('blur', function(){
+        if(this.value == ''|| isNaN(precio.value) == true){
+            errorPrecio.textContent = 'Escriba un precio, solo se aceptan números'
+            precio.classList.add("errorFatal");
+            errorPrecio.style.textAlign = 'center'           
+        } else if (precio.value <= 0) {
+            errorPrecio.textContent = 'El valor debe ser mayor a cero'
+            precio.classList.add("errorFatal");
+            errorPrecio.style.textAlign = 'center'           
+        } else {
+            errorPrecio.textContent = ''
+            precio.classList.remove("errorFatal");
+        }
+    })
+    imagen.addEventListener('blur', function(){
+        if(this.value == ''){
+            errorImagen.textContent = 'Seleccione un archivo de imágen'
+            imagen.classList.add("errorFatal");
+            errorImagen.style.textAlign = 'center'           
+        } else if (imagen.value != '' && !(/\.(jpg|png|gif|jpeg|JPG|PNG|GIF|JPEG)$/i).test(imagen.value)) {
+            errorImagen.textContent = 'Los formatos permitidos son '+ formatoDeImagen;
+            imagen.classList.add("errorFatal");
+            errorImagen.style.textAlign = 'center'  
+        } else {
+            errorImagen.textContent = ''
+            imagen.classList.remove("errorFatal");
+        }
+    })  
+
     formulario.addEventListener('submit', function(event){
 
         let errores=[] 
 
-        if(nombre.value == '' || nombre.value.length < 6){
+        if(nombre.value == '' || nombre.value.length < 5){
             let error = 'El nombre debe contener mínimo 5 caracteres'
             errores.push(error)
             nombre.classList.add("errorFatal");
-            nombre.classList.add("errorFatalLetras");            
         }else{
             nombre.classList.remove("errorFatal");
-            nombre.classList.remove("errorFatalLetras");
+            
         }
-        if(descripcion.value == '' || descripcion.value.length <21){
+        if(descripcion.value == '' || descripcion.value.length <20){
             let error = 'La descripción debe contener mínimo 20 caracteres'
             errores.push(error)
             descripcion.classList.add("errorFatal");
-            descripcion.classList.add("errorFatalLetras");            
         }else{
             descripcion.classList.remove("errorFatal");
-            descripcion.classList.remove("errorFatalLetras");
+            
         }
         if(genero.value == '- Género -'){
             let error = 'Seleccione un género'
             errores.push(error)
             genero.classList.add("errorFatal");
-            genero.classList.add("errorFatalLetras");            
         } else {
             genero.classList.remove("errorFatal");
-            genero.classList.remove("errorFatalLetras");
+            
         }
         if(edicion.value == '- Edición -'){
             let error = 'Seleccione una edición'
@@ -48,34 +126,25 @@ window.addEventListener('load', function(){
             let error = 'Escriba un precio, solo se aceptan números'
             errores.push(error)
             precio.classList.add("errorFatal");          
-            edicion.classList.add("errorFatalLetras");
+            
         } else if (precio.value <= 0) {
             let error = 'El valor debe ser mayor a cero'
             errores.push(error)
             precio.classList.add("errorFatal");          
-            edicion.classList.add("errorFatalLetras");
         } else {
             edicion.classList.remove("errorFatal");
-            edicion.classList.remove("errorFatalLetras");
         }
         if(imagen.value == ''){
             let error = 'Seleccione un archivo de imágen'
             errores.push(error)
         }
-        if (imagen.value != '' && !(/\.(jpg|png|gif|jpeg)$/i).test(imagen.value)) {
+        if (imagen.value != '' && !(/\.(jpg|png|gif|jpeg|JPG|PNG|GIF|JPEG)$/i).test(imagen.value)) {
             let error = 'Los formatos permitidos son '+ formatoDeImagen;
             errores.push(error)
         }
 
         if (errores.length > 0) {
             event.preventDefault();
-
-            let errorNombre = document.querySelector('#error_nombre')
-            let errorDescripcion = document.querySelector('#error_descripcion')
-            let errorImagen = document.querySelector('#error_imagen')
-            let errorPrecio = document.querySelector('#error_precio')
-            let errorGenero = document.querySelector('#error_genero')
-            let errorEdicion = document.querySelector('#error_edicion')
 
             errorNombre.innerHTML = ''
             errorDescripcion.innerHTML = ''

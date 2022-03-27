@@ -7,150 +7,140 @@ window.addEventListener("load", () => {
     let terminos = document.getElementById("tyc");
     let registroImagen = document.getElementById("registro-imagen");
     let formatoDeImagen = [".jpg", " .png"];
-    let ulRegistroErroresNombre = document.getElementById("errores-ul-registro-nombre");
-    let ulRegistroErroresEmail = document.getElementById("errores-ul-registro-email");
-    let ulRegistroErroresContra = document.getElementById("errores-ul-registro-contraseña");
-    let ulRegistroErroresFechaNacimiento = document.getElementById("errores-ul-registro-fechaNacimiento");
-    let ulRegistroErroresImagen = document.getElementById("errores-ul-registro-imagen");
-    let ulRegistroErroresTerminos = document.getElementById("errores-ul-registro-terminos");
     let expresionRegularValidacionEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3,4})+$/;
     let expresionRegularValidacionImagen = /\.(jpg|png|JPG|PNG)$/i;
 
     formulario.addEventListener("submit", (event) => {
-        let errores = [];
 
-        if (nombre.value == "") {
-            let error = "Por favor, escribe un nombre"
-            errores.push(error)
+        let hayErrores = {
+            errorNombre: nombreValidacion(),
+            errorEmail: emailValidacion(),
+            errorContra: contraValidacion(),
+            errorFechaNacimiento: fechaNacimientoValidacion(),
+            errorTerminos: terminosValidacion(),
+            errorImagen: imagenValidacion()
+        }
+
+        if (hayErrores.errorNombre || hayErrores.errorEmail || hayErrores.errorContra || hayErrores.errorFechaNacimiento || hayErrores.errorTerminos || hayErrores.errorImagen) {
+            event.preventDefault()
+        }
+
+    })
+
+    nombre.addEventListener("blur", nombreValidacion);
+    email.addEventListener("blur", emailValidacion);
+    password.addEventListener("blur", contraValidacion);
+    fechaNacimiento.addEventListener("blur", fechaNacimientoValidacion);
+    terminos.addEventListener("blur", terminosValidacion);
+    registroImagen.addEventListener("change", imagenValidacion);
+
+    writeMsg = ( ...arrToWrite ) => {
+        arrToWrite.forEach(elementoAEscribir => {
+            document.getElementById(elementoAEscribir.identificadorDIV).innerHTML = elementoAEscribir.mensajeError;
+            document.getElementById(elementoAEscribir.identificadorDIV).style.color = "red";
+        });
+    }
+
+    function nombreValidacion() {
+        let identificadorDIV = "errores-ul-registro-nombre";
+        if (nombre.value == "" || nombre.value == null) {
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un nombre"});
             nombre.classList.add("errorFatal");
             nombre.classList.add("errorFatalLetras");
+            return true;
         } else if (nombre.value.length <= 2) {
-            let error = "Por favor, introduce un nombre con más de 2 carácteres"
-            errores.push(error)
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un nombre que contenga más de 2 caracteres"});
             nombre.classList.add("errorFatalDos");
             nombre.classList.add("errorFatalDosLetras");
+            return true;
         } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
             nombre.classList.remove("errorFatal");
             nombre.classList.remove("errorFatalLetras");
             nombre.classList.remove("errorFatalDos");
             nombre.classList.remove("errorFatalDosLetras");
+            return false;
         }
+    }
 
+    function emailValidacion() {
+        let identificadorDIV = "errores-ul-registro-email";
         if (email.value == "") {
-            let errorEmailVacio = "Por favor, escribe un mail";
-            errores.push(errorEmailVacio);
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un mail"});
             email.classList.add("errorFatal");
             email.classList.add("errorFatalLetras");
+            return true;
         } else if (!expresionRegularValidacionEmail.test(email.value)) {
-            let errorEmailValido = "Por favor, escribe un mail válido";
-            errores.push(errorEmailValido);
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un mail válido"});
             email.classList.add("errorFatalDos");
             email.classList.add("errorFatalDosLetras");
+            return true;
         } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
             email.classList.remove("errorFatal");
             email.classList.remove("errorFatalLetras");
             email.classList.remove("errorFatalDos");
             email.classList.remove("errorFatalDosLetras");
+            return false;
         }
+    }
 
+    function contraValidacion() {
+        let identificadorDIV = "errores-ul-registro-contraseña";
         if (password.value == "") {
-            let errorPasswordVacio = "Por favor, escribe una contraseña";
-            errores.push(errorPasswordVacio);
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe una contraseña"});
             password.classList.add("errorFatal");
             password.classList.add("errorFatalLetras");
+            return true;
         } else if (password.value.length < 8) {
-            let errorPasswordDebil = "Por favor, introduce una contraseña de al menos 8 carácteres";
-            errores.push(errorPasswordDebil);
+            writeMsg({identificadorDIV, mensajeError: "Por favor, introduce una contraseña de al menos 8 caracteres"});
             password.classList.add("errorFatalDos");
             password.classList.add("errorFatalDosLetras");
+            return true;
         } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
             password.classList.remove("errorFatal");
             password.classList.remove("errorFatalLetras");
             password.classList.remove("errorFatalDos");
             password.classList.remove("errorFatalDosLetras");
+            return false;
         }
+    }
 
+    function fechaNacimientoValidacion() {
+        let identificadorDIV = "errores-ul-registro-fechaNacimiento";
         if (fechaNacimiento.value == "") {
-            let errorFechaNacimientoVacia = "Por favor, elige tu fecha de nacimiento";
-            errores.push(errorFechaNacimientoVacia);
+            writeMsg({identificadorDIV, mensajeError: "Por favor, pon una fecha de nacimiento"});
             fechaNacimiento.classList.add("errorFatal");
             fechaNacimiento.classList.add("errorFatalLetras");
+            return true;
         } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
             fechaNacimiento.classList.remove("errorFatal");
             fechaNacimiento.classList.remove("errorFatalLetras");
+            return false;
         }
+    }
 
-        if(!terminos.checked) {
-            let error = "Debes aceptar los términos y condiciones"
-            errores.push(error)
+    function terminosValidacion() {
+        let identificadorDIV = "errores-ul-registro-terminos";
+        if(!terminos.checked == true) {
+            writeMsg({identificadorDIV, mensajeError: "Por favor, acepta los términos"});
+            return true;
+        } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
+            return false;
         }
+    }
 
-        if (registroImagen.value != '' && !(expresionRegularValidacionImagen).test(registroImagen.value)) {
-            let errorImagen = 'Los formatos permitidos son ' + formatoDeImagen;
-            errores.push(errorImagen);
+    function imagenValidacion() {
+        let identificadorDIV = "errores-ul-registro-imagen";
+        if (!(expresionRegularValidacionImagen).test(registroImagen.value)) {
+            writeMsg({identificadorDIV, mensajeError: "Los formatos permitidos son: " + formatoDeImagen});
+            return true;
+        } else {
+            writeMsg({identificadorDIV, mensajeError: ""});
+            return false;
         }
-
-        if (errores.length > 0) {
-            event.preventDefault();
-
-            ulRegistroErroresNombre.innerHTML = "";
-            ulRegistroErroresEmail.innerHTML = "";
-            ulRegistroErroresContra.innerHTML = "";
-            ulRegistroErroresFechaNacimiento.innerHTML = "";
-            ulRegistroErroresImagen.innerHTML = "";
-            ulRegistroErroresTerminos.innerHTML = "";
-
-            let errorRegistroNombreUno = errores.indexOf("Por favor, escribe un nombre");
-            let errorRegistroNombreDos = errores.indexOf("Por favor, introduce un nombre con más de 2 carácteres");
-
-            if (errorRegistroNombreUno != -1) {
-                ulRegistroErroresNombre.innerHTML += `<li class="text-danger">${errores[errorRegistroNombreUno]}</li>`
-            } else if (errorRegistroNombreDos != -1) {
-                ulRegistroErroresNombre.innerHTML += `<li class="text-danger">${errores[errorRegistroNombreDos]}</li>`
-            }
-
-            let errorRegistroEmailUno = errores.indexOf("Por favor, escribe un mail");
-            let errorRegistroEmailDos = errores.indexOf("Por favor, escribe un mail válido");
-
-            if (errorRegistroEmailUno != -1) {
-                ulRegistroErroresEmail.innerHTML += `<li class="text-danger">${errores[errorRegistroEmailUno]}</li>`
-            } else if (errorRegistroEmailDos != -1) {
-                ulRegistroErroresEmail.innerHTML += `<li class="text-danger">${errores[errorRegistroEmailDos]}</li>`
-            }
-
-            let errorRegistroContraUno = errores.indexOf("Por favor, escribe una contraseña");
-            let errorRegistroContraDos = errores.indexOf("Por favor, introduce una contraseña de al menos 8 carácteres");
-
-            if (errorRegistroContraUno != -1) {
-                ulRegistroErroresContra.innerHTML += `<li class="text-danger">${errores[errorRegistroContraUno]}</li>`
-            } else if (errorRegistroContraDos != -1) {
-                ulRegistroErroresContra.innerHTML += `<li class="text-danger">${errores[errorRegistroContraDos]}</li>`
-            }
-
-            let errorRegistroFechaNacimiento = errores.indexOf("Por favor, por una fecha de nacimiento");
-
-            if (errorRegistroFechaNacimiento != -1) {
-                ulRegistroErroresFechaNacimiento.innerHTML += `<li class="text-danger">${errores[errorRegistroFechaNacimiento]}</li>`
-            }
-
-            let errorRegistroImagen = errores.indexOf('Los formatos permitidos son '+ formatoDeImagen);
-
-            if (errorRegistroImagen != -1) {
-                ulRegistroErroresImagen.innerHTML += `<li class="text-danger">${errores[errorRegistroImagen]}</li>`
-            }
-
-            let errorRegistroTerminos = errores.indexOf("Debes aceptar los terminos y condiciones");
-
-            if (errorRegistroTerminos != -1) {
-                ulRegistroErroresTerminos.innerHTML += `<li class="text-danger">${errores[errorRegistroTerminos]}</li>`
-            }
-
-            /*let erroresUlRegistro = document.getElementById("erroresRegistro-ul");
-            erroresUlRegistro.innerHTML = "";
-
-            for (let i = 0; i < errores.length; i++) {
-                erroresUlRegistro.innerHTML += `<li class="text-danger">${errores[i]}</li>`
-            }*/ 
-        }
-    })
+    }
 })

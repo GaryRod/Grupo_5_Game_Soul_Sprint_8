@@ -66,7 +66,7 @@ function addItemCarrito(newCarrito){
         tBody.appendChild(tr)
     })
 }
-*/
+
 
 
 

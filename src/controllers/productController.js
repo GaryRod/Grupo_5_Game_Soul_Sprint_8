@@ -24,7 +24,7 @@ const productController = {
         res.redirect('/users/login')
     },
     createProduct: async (req,res) => {
-		let allGenres = await db.Genre.findAll();
+        let allGenres = await db.Genre.findAll();
         let allEditions = await db.Edition.findAll();
         res.render('./products/createProduct', {allGenres, allEditions})
     },
@@ -46,6 +46,7 @@ const productController = {
             name_game: req.body.nombre,
 			description: req.body.descripcion,
 			price: req.body.precio,
+			video: req.body.video,
 			editions_id: req.body.edicion,
 			genres_id: req.body.genero
         })
@@ -65,7 +66,7 @@ const productController = {
         res.render('./products/editProduct', {productToEdit, allGenres, allEditions})
     },
     update: async (req, res) => {
-        let allGenres = await db.Genre.findAll();
+        let allGenres = await db.Genre.findAll(); 
         let allEditions = await db.Edition.findAll();
         let productToEdit = await db.Game.findByPk(req.params.id)
         const errores = validationResult(req);
@@ -84,8 +85,9 @@ const productController = {
 			name_game: req.body.nombre,
 			description: req.body.descripcion,
 			price: req.body.precio,
+			video: req.body.video,
 			editions_id: req.body.edicion,
-			genres_id: req.body.genero,
+			genres_id: req.body.genero
         },{
             where: {id: req.params.id}
         })
@@ -98,7 +100,7 @@ const productController = {
 			games_id: req.params.id
 		})
         res.redirect('/')
-    },
+    }, 
     destroy: async (req, res)=>{
         await db.Image.destroy({
             where: {games_id: req.params.id},
@@ -112,9 +114,9 @@ const productController = {
     },
     favoritos: (req, res) => {
         db.Game.findAll({
-			include: ['images']
-		})
-        .then(producto => {
+        include: ['images']
+    })
+    .then(producto => {
 			res.render('./products/favoritos', {favoritos: producto})})
 		.catch(error => res.send(error))
     },

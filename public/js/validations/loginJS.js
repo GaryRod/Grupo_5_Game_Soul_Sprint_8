@@ -1,65 +1,71 @@
-window.addEventListener('load', function(){
-    
-    let formulario = document.querySelector('#form-login');
-    let campoEmail = document.querySelector('#email')
-    let campoContraseña = document.querySelector('#password')
-    let ulErroresEmail= document.querySelector('.ul-errores-email');
-    let ulErroresContraseña= document.querySelector('.ul-errores-contraseña');
-    campoEmail.focus()
-    formulario.addEventListener('submit', e=>{
-        let expEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3,4})+$/
-        let errores = [];
-        campoEmail.focus()
+window.addEventListener("load", () => {
+    let formulario = document.getElementById("form-login");
+    let campoEmail = document.getElementById("email-login");
+    let campoContraseña = document.getElementById("password-login");
+    let expEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3,4})+$/;
 
-        if(campoEmail.value ==''){
-            let errorEmail = 'Debes completar el campo de email'
-            errores.push(errorEmail)
-            campoEmail.classList.add("errorFatal");
-        }
-        else if (!expEmail.test (campoEmail.value)) {
-            let errorValidacion = "Por favor, escribe un mail válido"
-            errores.push(errorValidacion);
-            campoEmail.classList.add("errorFatal");
-        }
-        else{
-            campoEmail.classList.remove("errorFatal");
-            campoContraseña.focus();
-        }
-        
-        if(campoContraseña.value ==''){
-            let errorContraseña = 'Debes ingresar una contraseña'
-            errores.push(errorContraseña)
-            campoContraseña.classList.add("errorFatal");
-        }
-        else{
-            campoContraseña.classList.remove("errorFatal");
+    formulario.addEventListener("submit", (event) => {
+
+        let hayErroresLogin = {
+            errorLoginEmail: emailLoginValidacion(),
+            errorLoginContra: contraLoginValidacion()
         }
 
-        if(errores.length > 0){
-            e.preventDefault();
-
-            ulErroresEmail.innerHTML = "";
-            ulErroresContraseña.innerHTML="";
-
-            let er= errores.indexOf('Debes completar el campo de email')
-            let erro = errores.indexOf( "Por favor, escribe un mail válido")
-            if(er != -1){
-                ulErroresEmail.innerHTML += `<li class="text-danger">${errores[er]}</li>`
-            }
-
-            else if(erro != -1){
-                ulErroresEmail.innerHTML += `<li class="text-danger">${errores[erro]}</li>`
-            }
-            let err = errores.indexOf('Debes ingresar una contraseña')
-            if(err != -1){
-                ulErroresContraseña.innerHTML += `<li class="text-danger">${errores[err]}</li>`
-            }
+        if (hayErroresLogin.errorLoginEmail || hayErroresLogin.errorLoginContra) {
+            event.preventDefault();
         }
+
     })
+
+    campoEmail.addEventListener("blur", emailLoginValidacion);
+    campoContraseña.addEventListener("blur", contraLoginValidacion);
+
+    writeMsg = ( ...arrToWrite ) => {
+        arrToWrite.forEach(elementoAEscribir => {
+            document.getElementById(elementoAEscribir.identificadorDIV).innerHTML = elementoAEscribir.mensajeError;
+            document.getElementById(elementoAEscribir.identificadorDIV).style.color = "red";
+        });
+    }
+
+    function emailLoginValidacion() {
+        let identificadorDIV = "ul-errores-email";
+        if(campoEmail.value == ""){
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un mail"});
+            campoEmail.classList.add("errorFatal");
+            campoEmail.classList.add("errorFatalLetras");
+            return true;
+        }
+        else if (!expEmail.test(campoEmail.value)) {
+            writeMsg({identificadorDIV, mensajeError: "Por favor, escribe un mail válido"});
+            campoEmail.classList.add("errorFatalDos");
+            campoEmail.classList.add("errorFatalDosLetras");
+            return true;
+        }
+        else {
+            writeMsg({identificadorDIV, mensajeError: ""});
+            campoEmail.classList.remove("errorFatal");
+            campoEmail.classList.remove("errorFatalLetras");
+            campoEmail.classList.remove("errorFatalDos");
+            campoEmail.classList.remove("errorFatalDosLetras");
+            return false;
+        }
+    }
+
+    function contraLoginValidacion() {
+        let identificadorDIV = "ul-errores-contraseña";
+        if(campoContraseña.value == "") {
+            writeMsg({identificadorDIV, mensajeError: "Debes ingresar una contraseña"});
+            campoContraseña.classList.add("errorFatal");
+            campoContraseña.classList.add("errorFatalLetras");
+            return true;
+        }
+        else {
+            writeMsg({identificadorDIV, mensajeError: ""});
+            campoContraseña.classList.remove("errorFatal");
+            campoContraseña.classList.remove("errorFatalLetras");
+            return false;
+        }
+    }
 })
 
 
-
-//for (let r = 0; r < ulErrores.length; r++) {
-  //  ulErrores[i].innerHTML += '<li class="text-danger">'+ errores[r] + '</li>' 
-//}

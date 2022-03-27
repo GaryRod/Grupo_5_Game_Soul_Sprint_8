@@ -45,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     stock_max: DataTypes.INTEGER,
     editions_id: DataTypes.INTEGER,
     genres_id: DataTypes.INTEGER,
-    consoles_id: DataTypes.INTEGER
+    consoles_id: DataTypes.INTEGER,
+    video: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Game',
