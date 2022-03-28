@@ -44,7 +44,7 @@
 
             <div class="form__cont-elements">
                 <h5 class="form__seccion-h5">Insertá una url de video</h5>
-                <input type="text" id="video_crear_producto" name="video" value="<%= locals.oldData ? oldData.video : productToEdit.video %>">
+                <input type="text" class="input__create-product" id="video_editar_producto" name="video" value="<%= locals.oldData ? oldData.video : productToEdit.video %>">
                 <% if (locals.errors && errors.video) { %>
                     <p class="text-danger"><%= errors.video.msg %></p>
                 <% } %>

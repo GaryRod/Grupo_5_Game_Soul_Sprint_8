@@ -12,10 +12,20 @@ const validaciones = [
         .notEmpty().withMessage("Debes elegir un género"),
     body('edicion')
         .notEmpty().withMessage("Debes elegir una edición"),
+    body('video')
+        .notEmpty().withMessage("Debes agregar una URL")
+        .custom((value, {req}) => {
+            let video = req.body.video
+            let regexEmail = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+                if (!regexEmail.test(video)) {
+                    throw new Error ("URL inválida");
+                }
+            return true
+        }),
     body('precio')
         .notEmpty().withMessage("Debes completar con un precio")
         .isNumeric().withMessage("Sólo se permiten números")
-        .custom((value, {req})=> {
+        .custom(value => {
             if (value <= 0) {
                 throw new Error ('Solo se admiten valores mayores 0')
             }

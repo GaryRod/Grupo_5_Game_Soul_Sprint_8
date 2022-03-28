@@ -8,6 +8,7 @@ window.addEventListener('load', function(){
     let precio = document.querySelector('#precio_editar_producto')
     let genero = document.querySelector("#genero_editar_producto")
     let edicion = document.querySelector('#edicion_editar_producto')
+    let video = document.querySelector('#video_editar_producto')
     
     //Campo de <p> para los errores
 
@@ -17,7 +18,10 @@ window.addEventListener('load', function(){
     let errorPrecio = document.querySelector('#error_precio')
     let errorGenero = document.querySelector('#error_genero')
     let errorEdicion = document.querySelector('#error_edicion')
-   
+    let errorVideo = document.querySelector('#error_video')
+
+    let validarURL = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
+
     nombre.addEventListener('blur', function(){
         if(this.value == '' || nombre.value.length < 5){   
         errorNombre.textContent = 'El nombre debe contener mínimo 5 caracteres'
@@ -87,7 +91,21 @@ window.addEventListener('load', function(){
             errorImagen.textContent = ''
             imagen.classList.remove("errorFatal");
         }
-    })  
+    }) 
+    video.addEventListener('blur', function(){
+        if(this.value == ''){
+            errorVideo.textContent = 'Seleccione una URL'
+            video.classList.add("errorFatal");
+            errorVideo.style.textAlign = 'center'           
+        } else if (video.value != '' && !validarURL.test(video.value)) {
+            errorVideo.textContent = 'URL inválida';
+            video.classList.add("errorFatal");
+            errorVideo.style.textAlign = 'center'  
+        } else {
+            errorVideo.textContent = ''
+            video.classList.remove("errorFatal");
+        }
+    }) 
     
     formulario.addEventListener('submit', function(event){
 
@@ -148,6 +166,19 @@ window.addEventListener('load', function(){
             let error = 'Los formatos permitidos son '+ formatoDeImagen;
             errores.push(error)
         }
+
+        if(video.value == ''){
+            let error = 'Seleccione una URL'
+            errores.push(error)
+            video.classList.add("errorFatal");          
+        } else if (video.value != '' && !validarURL.test(video.value)) {
+            let error = 'URL inválida';
+            errores.push(error)
+            video.classList.add("errorFatal");          
+        } else {
+            video.classList.remove("errorFatal");
+        }
+
         if (errores.length > 0) {
             event.preventDefault();
 
@@ -157,6 +188,7 @@ window.addEventListener('load', function(){
             errorPrecio.innerHTML = ''
             errorGenero.innerHTML = ''
             errorEdicion.innerHTML = ''
+            errorVideo.innerHTML = ''
 
             let erroresNombre = errores.indexOf('El nombre debe contener mínimo 5 caracteres')
             if(erroresNombre != -1){
@@ -178,6 +210,16 @@ window.addEventListener('load', function(){
                 errorImagen.innerHTML += errores[erroresImagen2]
             }
             errorImagen.style.textAlign='center'
+            let erroresVideo = errores.indexOf('URL inválida')
+            if(erroresVideo != -1){
+                errorVideo.innerHTML += errores[erroresVideo]
+            }
+            errorVideo.style.textAlign='center'
+            let erroresVideo2 = errores.indexOf('Seleccione una URL')
+            if(erroresVideo2 != -1){
+                errorVideo.innerHTML += errores[erroresVideo2]
+            }
+            errorVideo.style.textAlign='center'
             let erroresPrecio = errores.indexOf('Escriba un precio, solo se acpetan números')
             if(erroresPrecio != -1){
                 errorPrecio.innerHTML += errores[erroresPrecio]

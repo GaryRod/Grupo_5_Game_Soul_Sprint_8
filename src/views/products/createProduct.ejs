@@ -36,7 +36,7 @@
             <p class="text-danger" id="error_imagen"></p>
             <div class="form__cont-elements">
                 <h5 class="form__seccion-h5">Insertá una url de video</h5>
-                <input type="text" id="video_crear_producto" name="video" value="<%= locals.oldData ? oldData.video : null %>">
+                <input type="text" class="input__create-product" id="video_crear_producto" name="video" value="<%= locals.oldData ? oldData.video : null %>">
                 <% if (locals.errors && errors.video) { %>
                     <p class="text-danger"><%= errors.video.msg %></p>
                 <% } %>
