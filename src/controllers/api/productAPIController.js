@@ -1,7 +1,4 @@
-const {validationResult} = require('express-validator');
 const db = require('../../database/models')
-const {Op} = require('sequelize');
-const methodOverride = require('method-override');
 
 const productAPIController = {
     list: async(req, res) => {
@@ -39,7 +36,7 @@ const productAPIController = {
                 description: game.description,
                 price: game.price,
                 image: game.images[0].img_url,
-                video: game.video.includes('https://') ? game.video : 'hhtps://' + game.video,
+                video: game.video.includes('https://') ? game.video : 'https://' + game.video,
                 genre: game.genres.name_genre,
                 edition: game.editions.name_editions,
                 console: game.consoles.name_console,
@@ -65,7 +62,7 @@ const productAPIController = {
                         price: game.price,
                         description: game.description,
                         image: req.headers.host + "/images/" + game.images[0].img_url,
-                        video: game.video.includes('https://') ? game.video : 'hhtps://' + game.video,
+                        video: game.video.includes('https://') ? game.video : 'https://' + game.video,
                         genre: game.genres.name_genre,
                         edition: game.editions.name_editions,
                         console: game.consoles.name_console,

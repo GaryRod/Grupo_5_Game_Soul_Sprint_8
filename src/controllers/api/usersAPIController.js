@@ -1,8 +1,4 @@
-const {validationResult} = require('express-validator');
 const db = require('../../database/models')
-const {Op} = require('sequelize');
-const methodOverride = require('method-override');
-
 
 const usersAPIControler ={
     list: async (req, res)=>{
