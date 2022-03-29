@@ -5,26 +5,30 @@ const methodOverride = require('method-override');
 
 
 const usersAPIControler ={
-    list: (req, res)=>{
-        db.User.findAll()
-        .then(user=> {
-            return res.status(200).json({
+    list: async (req, res)=>{
+        let users = await db.User.findAll()
+        
+        let response = {
                 meta:{
                     status: 200,
-                    count: user.length,
-                    url: '/api/users'
+                    count: users.length,
+                    url: req.headers.host + '/api/users'
                 },
-                data:
-                    {
-                    id: user.id,
-                    name: user.first_name,
-                    email: user.email,
-                    avatar: user.avatar,
-                    detail: '/api/users/:id'
+                data: {
+                    list: []
                 }
-            
+            }
+        users.forEach(user => {
+            response.data.list.push({
+                id: user.id,
+                name: user.first_name,
+                email: user.email,
+                avatar: user.avatar,
+                detail: req.headers.host + `/api/users/${user.id}`
             })
-        })
+            return user
+        });
+        return res.json(response)
     },
     detail: (req, res) => {
         db.User.findByPk(req.params.id)
