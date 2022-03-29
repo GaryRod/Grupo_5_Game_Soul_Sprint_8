@@ -11,6 +11,7 @@ const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware')
 
 
 const productsAPIRoutes = require('./routes/api/productsAPIRoutes')
+const usersAPIRoutes = require('./routes/api/userAPIRoutes')
 
 // Sessiones y Cookies
 app.use(session({
@@ -51,7 +52,7 @@ app.use('/users', userRoutes)
 
 // Rutas API
 app.use('/api/products', productsAPIRoutes)
-app.use('/api/users', userRoutes)
+app.use('/api/users', usersAPIRoutes)
 
 // Error 404
 app.use((req, res, next) => {

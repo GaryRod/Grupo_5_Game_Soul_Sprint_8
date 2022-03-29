@@ -43,6 +43,7 @@ const productAPIController = {
                 video: game.video,
                 genre: game.genres.name_genre,
                 edition: game.editions.name_editions,
+                console: game.consoles.name_console,
                 detail: req.headers.host +  `/api/products/${game.id}`
             })
             return game
