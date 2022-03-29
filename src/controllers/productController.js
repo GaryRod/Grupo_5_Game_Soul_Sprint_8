@@ -11,7 +11,7 @@ const productController = {
     },
     productDetails: (req, res) =>{
         db.Game.findByPk(req.params.id, 
-			{include:['images', 'genres']})
+			{include:['images', 'genres', 'consoles', 'editions']})
         .then(producto => {
             res.render('./products/productDetail', {producto})
         })

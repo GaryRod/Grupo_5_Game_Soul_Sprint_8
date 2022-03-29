@@ -25,18 +25,20 @@
                     </div>
 
                     <div class="cont__consolas">
-                        <div class="ps5"><img class="img-logo__plataformas" src="/images/iconos/PlayStation_5_Logo.svg"></div>
-                        <div class="xbox"><img class="img-logo__plataformas" src="/images/iconos/Xbox_Logo.svg"></div>
-                        <div class="pc"><img class="img-logo__plataformas" src="/images/iconos/Windows_Logo.svg"></div>
+                        <% if (producto.consoles.name_console == 'Play Station') { %>
+                            <div class="ps5"><img class="img-logo__plataformas" src="/images/iconos/PlayStation_5_Logo.svg"></div>
+                        <% } else if (producto.consoles.name_console == 'X-Box') {%>
+                            <div class="xbox"><img class="img-logo__plataformas" src="/images/iconos/Xbox_Logo.svg"></div>
+                        <% } else if (producto.consoles.name_console == 'PC') {%>
+                            <div class="pc"><img class="img-logo__plataformas" src="/images/iconos/Windows_Logo.svg"></div>
+                        <% }%>
                     </div>
                 </di>
 
                 <div class="cont-ediciones">
                     <span class="edicion">Edicion</span>
                     <div class="ediciones">
-                        <button class="estandar">Estandar</button>
-                        <button class="estandar">Deluxe</button>
-                        <button class="estandar">Gold</button>
+                        <button class="estandar"><%=producto.editions.name_editions %></button>
                     </div>
                 </div>
             </div>
