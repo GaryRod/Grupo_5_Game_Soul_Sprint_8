@@ -12,6 +12,8 @@ const validaciones = [
         .notEmpty().withMessage("Debes elegir un género"),
     body('edicion')
         .notEmpty().withMessage("Debes elegir una edición"),
+    body('consola')
+        .notEmpty().withMessage("Debes elegir una consola"),
     body('video')
         .notEmpty().withMessage("Debes agregar una URL")
         .custom((value, {req}) => {

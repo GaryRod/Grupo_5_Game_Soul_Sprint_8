@@ -78,6 +78,20 @@
                 <% } %>
             </div>
             <p class="text-danger" id="error_edicion"></p>
+            
+            <div class="form__cont-elements">
+                <h5 class="form__seccion-h5">Seleccioná una consola:</h5>
+                <select class="input__create-product" id="consola_editar_producto" name="consola">
+                    <option disabled selected>- Consola -</option>
+                    <% allConsoles.forEach(consola => { %>
+                        <option value="<%= consola.id %>" <%= locals.oldData && oldData.consola == consola.id || productToEdit.consoles_id == consola.id? "selected" : "" %>> <%= consola.name_console %> </option>
+                    <% }) %>
+                </select>
+                <% if (locals.errors && errors.consola) { %>
+                    <p class="text-danger"><%= errors.consola.msg %></p>
+                <% } %>
+            </div>
+            <p class="text-danger" id="error_consola"></p>
 
             <div class="form__cont-elements">
                 <h5 class="form__seccion-h5">Escribe un precio:</h5>

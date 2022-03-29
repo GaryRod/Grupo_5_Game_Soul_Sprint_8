@@ -8,6 +8,7 @@ window.addEventListener('load', function(){
     let precio = document.querySelector('#precio_crear_producto')
     let genero = document.querySelector("#genero_crear_producto")
     let edicion = document.querySelector('#edicion_crear_producto')
+    let consola = document.querySelector('#consola_crear_producto')
     let video = document.querySelector('#video_crear_producto')
     
     //Campo de <p> para los errores
@@ -18,6 +19,7 @@ window.addEventListener('load', function(){
     let errorPrecio = document.querySelector('#error_precio')
     let errorGenero = document.querySelector('#error_genero')
     let errorEdicion = document.querySelector('#error_edicion')
+    let errorConsola = document.querySelector('#error_consola')
     let errorVideo = document.querySelector('#error_video')
 
     let validarURL = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
@@ -61,6 +63,16 @@ window.addEventListener('load', function(){
             }else{
                 errorEdicion.textContent = ''
                 edicion.classList.remove("errorFatal");
+        }
+    })
+    consola.addEventListener('blur', function(){
+        if(this.value == '- Consola -'){   
+            errorEdicion.textContent = 'Seleccione una edición'
+                consola.classList.add("errorFatal");
+                errorConsola.style.textAlign = 'center'           
+            }else{
+                errorConsola.textContent = ''
+                consola.classList.remove("errorFatal");
         }
     })
 
@@ -133,12 +145,20 @@ window.addEventListener('load', function(){
             genero.classList.add("errorFatal");
         } else {
             genero.classList.remove("errorFatal");
-            
         }
         if(edicion.value == '- Edición -'){
             let error = 'Seleccione una edición'
             errores.push(error)
             edicion.classList.add("errorFatal");
+        } else {
+            edicion.classList.remove("errorFatal");
+        }
+        if(consola.value == '- Consola -'){
+            let error = 'Seleccione una consola'
+            errores.push(error)
+            consola.classList.add("errorFatal");
+        }else {
+            consola.classList.remove("errorFatal");
         }
         if(precio.value == '' || isNaN(precio.value) == true){
             let error = 'Escriba un precio, solo se aceptan números'
@@ -182,6 +202,7 @@ window.addEventListener('load', function(){
             errorPrecio.innerHTML = ''
             errorGenero.innerHTML = ''
             errorEdicion.innerHTML = ''
+            errorConsola.innerHTML = ''
             errorVideo.innerHTML = ''
 
             let erroresNombre = errores.indexOf('El nombre debe contener mínimo 5 caracteres')
@@ -234,6 +255,11 @@ window.addEventListener('load', function(){
                 errorEdicion.innerHTML += errores[erroresEdicion]
             }
             errorEdicion.style.textAlign='center'
+            let erroresConsola = errores.indexOf('Seleccione una consola')
+            if(erroresConsola != -1){
+                errorConsola.innerHTML += errores[erroresConsola]
+            }
+            errorConsola.style.textAlign='center'
         }
     })
 })

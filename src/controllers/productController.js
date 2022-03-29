@@ -26,11 +26,13 @@ const productController = {
     createProduct: async (req,res) => {
         let allGenres = await db.Genre.findAll();
         let allEditions = await db.Edition.findAll();
-        res.render('./products/createProduct', {allGenres, allEditions})
+        let allConsoles = await db.Console.findAll();
+        res.render('./products/createProduct', {allGenres, allEditions, allConsoles})
     },
     store: async (req, res) => {
         let allGenres = await db.Genre.findAll();
         let allEditions = await db.Edition.findAll();
+        let allConsoles = await db.Console.findAll();
         const errores = validationResult(req);
 
         if (errores.errors.length > 0 ) {
@@ -38,7 +40,8 @@ const productController = {
                 errors: errores.mapped(),
                 oldData: req.body,
                 allGenres,
-                allEditions
+                allEditions,
+                allConsoles
             })
         }
 
@@ -48,7 +51,8 @@ const productController = {
 			price: req.body.precio,
 			video: req.body.video,
 			editions_id: req.body.edicion,
-			genres_id: req.body.genero
+			genres_id: req.body.genero,
+			consoles_id: req.body.consola
         })
 
 		await db.Image.create({
@@ -60,14 +64,16 @@ const productController = {
     editProduct: async (req, res) => {
         let allGenres = await db.Genre.findAll();
         let allEditions = await db.Edition.findAll();
+        let allConsoles = await db.Console.findAll();
         let productToEdit = await db.Game.findByPk(req.params.id,
             {include: ['images']})
 
-        res.render('./products/editProduct', {productToEdit, allGenres, allEditions})
+        res.render('./products/editProduct', {productToEdit, allGenres, allEditions, allConsoles})
     },
     update: async (req, res) => {
         let allGenres = await db.Genre.findAll(); 
         let allEditions = await db.Edition.findAll();
+        let allConsoles = await db.Console.findAll();
         let productToEdit = await db.Game.findByPk(req.params.id)
         const errores = validationResult(req);
         
@@ -77,6 +83,7 @@ const productController = {
                 oldData: req.body,
                 allGenres,
                 allEditions,
+                allConsoles,
                 productToEdit
             })
         }
@@ -87,7 +94,8 @@ const productController = {
 			price: req.body.precio,
 			video: req.body.video,
 			editions_id: req.body.edicion,
-			genres_id: req.body.genero
+			genres_id: req.body.genero,
+			consoles_id: req.body.consola
         },{
             where: {id: req.params.id}
         })
