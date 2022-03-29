@@ -34,14 +34,15 @@ const productAPIController = {
 
         games.forEach(game => {
             response.data.list.push({
+                // game,
                 id: game.id,
                 name: game.name_game,
                 description: game.description,
                 price: game.price,
                 image: game.images[0].img_url,
+                video: game.video,
                 genre: game.genres.name_genre,
                 edition: game.editions.name_editions,
-                console: game.consoles.name_console,
                 detail: req.headers.host +  `/api/products/${game.id}`
             })
             return game
@@ -64,6 +65,7 @@ const productAPIController = {
                         price: game.price,
                         description: game.description,
                         image: req.headers.host + "/images/" + game.images[0].img_url,
+                        video: game.video.includes('https://') ? game.video : 'hhtps://' + game.video,
                         genre: game.genres.name_genre,
                         edition: game.editions.name_editions,
                         console: game.consoles.name_console,
