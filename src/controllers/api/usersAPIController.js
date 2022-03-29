@@ -16,7 +16,11 @@ const usersAPIControler ={
                 },
                 data:
                     {
-                    user
+                    id: user.id,
+                    name: user.first_name,
+                    email: user.email,
+                    avatar: user.avatar,
+                    detail: '/api/users/:id'
                 }
             
             })
