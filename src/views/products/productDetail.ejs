@@ -66,16 +66,16 @@
 
             <div class="contenido">
                 <div class="cont-datos">
-                    <button class="descripcion"> Descripción</button>
-                    <button class="video">Videos</button>
-                    <button class="ficha-tecnica">Ficha técnica</button>
+                    <button class="descripcion" id="boton-descripcion"> Descripción</button>
+                    <button class="video" id="boton-video">Videos</button>
+                    <button class="ficha-tecnica" id="descripcion-ficha-tecnica">Ficha técnica</button>
                 </div>
 
                 <div class="cont__detalles">
-                    <p>
+                    <p id="descripcion-juego">
                         <%= producto.description %>
                     </p>
-                    <iframe width="560" height="315" src="
+                    <iframe width="300" id="video-html" class="cont-video" height="160" src="
                     <% if (producto.video.includes("https://")) { %>
                         <%= producto.video %>
                     <% } else {%>
@@ -97,6 +97,7 @@
     </main>
 
     <%- include ('../partials/footer') %>
+    <script src="/js/detalleProductoFront.js"></script>
 
 </body>
 </html>
