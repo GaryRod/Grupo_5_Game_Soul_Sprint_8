@@ -426,11 +426,6 @@
     text-decoration: none;
 }
 
-/*.section-ppal__titulo-enlace:hover, .section-sec__titulo-enlace:hover{
-    text-shadow: -2px -1px 15px #eee; 
-}
-*/
-
 .section-ppal__art, .section-sec__arts{
     box-shadow: 7px 7px 4px #334257;
 }
@@ -1000,6 +995,7 @@ select {
 
 .contenido{
     width: 100%;
+    align-items: center;
 }
 
 .cont-datos{
@@ -1043,8 +1039,9 @@ select {
 
 .cont__edicion {
     display: flex;
+    /* justify-content: center; */
     gap: 25px;
-    margin: 0 0 5% 0;
+    margin-bottom: 2%;
 }
 
 .cont__edicion-editar {

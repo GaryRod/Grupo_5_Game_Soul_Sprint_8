@@ -109,7 +109,7 @@ window.addEventListener('load', function(){
             errorVideo.textContent = 'Seleccione una URL'
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'           
-        } else if (video.value != '' && !validarURL.test(video.value)) {
+        } else if (!validarURL.test(video.value)) {
             errorVideo.textContent = 'URL inválida';
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'  
@@ -185,10 +185,10 @@ window.addEventListener('load', function(){
             let error = 'Seleccione una URL'
             errores.push(error)
             video.classList.add("errorFatal");          
-        } else if (video.value != '' && !validarURL.test(video.value)) {
+        } else if (!validarURL.test(video.value)) {
             let error = 'URL inválida';
             errores.push(error)
-            video.classList.add("errorFatal");          
+            video.classList.add("errorFatal");
         } else {
             video.classList.remove("errorFatal");
         }
