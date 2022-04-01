@@ -67,7 +67,7 @@ window.addEventListener('load', function(){
     })
     consola.addEventListener('blur', function(){
         if(this.value == '- Consola -'){   
-            errorEdicion.textContent = 'Seleccione una edición'
+            errorConsola.textContent = 'Seleccione una consola'
                 consola.classList.add("errorFatal");
                 errorConsola.style.textAlign = 'center'           
             }else{
