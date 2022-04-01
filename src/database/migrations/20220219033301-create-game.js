@@ -17,6 +17,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      video: {
+        type: Sequelize.STRING
+      },
       stock: {
         type: Sequelize.INTEGER
       },
@@ -54,9 +57,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      video: {
-        type: Sequelize.STRING
       }
     });
   },

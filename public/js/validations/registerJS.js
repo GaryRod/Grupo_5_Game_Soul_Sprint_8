@@ -135,7 +135,7 @@ window.addEventListener("load", () => {
 
     function imagenValidacion() {
         let identificadorDIV = "errores-ul-registro-imagen";
-        if (!(expresionRegularValidacionImagen).test(registroImagen.value)) {
+        if (registroImagen.value != "" && !(expresionRegularValidacionImagen).test(registroImagen.value)) {
             writeMsg({identificadorDIV, mensajeError: "Los formatos permitidos son: " + formatoDeImagen});
             return true;
         } else {
