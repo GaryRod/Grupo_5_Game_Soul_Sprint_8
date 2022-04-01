@@ -41,6 +41,9 @@ const productAPIController = {
                 genre: game.genres.name_genre,
                 edition: game.editions.name_editions,
                 console: game.consoles.name_console,
+                stock: game.stock,
+                stock_min: game.stock_min,
+                stock_max: game.stock_max,
                 detail: req.headers.host +  `/api/products/${game.id}`
             })
             return game
