@@ -4,6 +4,12 @@
 <body class="body">
     <%- include('../partials/header')  %> 
 
+<div class="cart-products" id="products-id">
+    <p class="close-btn" onclick="closeBtn()">X</p>
+    <h3>Mi carrito</h3>
+    <div class="card-item"></div>
+    <h2 class="h2">Total: <strong class="price-total"></strong> $</h2>
+</div>
     <main class="main main--index">
         <section class="section-sec section-sec--products">
             <h3 class="section-sec__titulo">Todos nuestros productos</h3>
@@ -11,29 +17,38 @@
                 <% productos.forEach(element => { %>
                     <article class="section-sec__arts">
                         <div class="section-sec__cont-picture-star">
-                            <picture class="section-sec__picture">
-                                <a href="/products/detail/<%= element.id %>">
-                                    <img src="../images/juegos/<%= element.images[0].img_url%>" alt="El juego es <%= element.name_game %>" class="section-sec__imgs">
-                                </a>
-                            </picture>
                             <!-- <div class="section-sec__cont-star">
                                 <i class="fas fa-star section-sec__star"></i>
                             </div> -->
                         </div>
 
                         <div class="section-sec__cont-datos">
+                            <picture class="section-sec__picture">
+                                <a href="/products/detail/<%= element.id %>">
+                                    <img src="../images/juegos/<%= element.images[0].img_url%>" alt="El juego es <%= element.name_game %>" class="section-sec__imgs" id="dale">
+                                </a>
+                            </picture>
                             <span id="titulo" class="section-sec__spans"><%= element.name_game %></span>
-                            <span id="precio" class="section-sec__spans">$ <%= element.price %></span>
-                            <span class="button-carrito">Añadir al carrito</span>
+                            <p id="datadata">$<span id="precio" class="section-sec__spans"><%= element.price %></span></p>
+                            <p class="button-carrito" id="submit" data-id= "<%= element.id %>">Añadir al carrito</p>
                         </div>
                     </article>
                 <% }) %>        
             </div>
         </section>
+        <script>
+            function showCart(x){
+                document.getElementById("products-id").style.display = "block";
+            }
+            function closeBtn(){
+                 document.getElementById("products-id").style.display = "none";
+            }
+    
+        </script>
     </main>
 
     <%- include ('../partials/footer') %> 
-    <script src="../../../js/validations/carrito.js" type="module"></script>
+    <script src="../../../js/validations/carritoFinal.js"></script>
     
 </body>
     

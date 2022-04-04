@@ -6,11 +6,8 @@ const contCarrito = document.querySelector('.carrito')
 function renderCarrito(){
     contCarrito.innerHTML +=""
     carrito.map(item=>{
-        const tr = document.createElement('tr')
-        const content= `
-        <article class="section-sec__arts">
-
-                        <div class="section-sec__cont-picture-star">
+        const article = document.createElement('article')
+        const content= `<div class="section-sec__cont-picture-star">
                             <picture class="section-sec__picture">
                                 <img src=${item.img} class="section-sec__imgs">
                             </picture>
@@ -24,14 +21,9 @@ function renderCarrito(){
                             <span id="precio" class="section-sec__spans">$ ${item.precio}</span>
                         </div>
                         <input type="number" min="1" value=${item.cantidad}>
-                        <button>x</button>
-
-                        
-                    </article>
-        
-        `
-        tr.innerHTML = content;
-        contCarrito.appendChild(tr)
+                      <button>x</button>`
+        article.innerHTML = content;
+        contCarrito.appendChild(article)
     })
 }
 renderCarrito()

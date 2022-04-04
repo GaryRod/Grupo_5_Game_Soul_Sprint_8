@@ -32,7 +32,10 @@
                     </ul>
                 <% } %>
             </div>
-            <a href="/products/productCart"><img src="/images/iconos/shop.svg" class="cont-i__iconos"></a>
+            <div>
+            <img onmouseover="showCart(this)" src="/images/iconos/shop.svg" class="cart cont-i__iconos">
+            <p class="count-product">0</p>
+            </div>
             <img src="/images/iconos/burger-menu.svg" class="cont-i__iconos cont-i__iconos--burger-menu" id="menu">
         </div>
     </div>
@@ -67,4 +70,5 @@
             <li class="header__items"><a href="/products" class="header__enlaces">Productos</a></li>
         </ul>
     </nav>
+    <script src="../../../js/validations/carritoFinal.js" type="module"></script>
 </header>
