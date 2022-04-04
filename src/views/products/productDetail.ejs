@@ -82,6 +82,12 @@
                         https://<%= producto.video %>
                     <% } %>
                     " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div id="ficha-tecnica">
+                        <span><strong> Plataforma: </strong><%= producto.consoles.name_console %> </span><br>
+                        <span><strong> Stock: </strong><%= producto.stock %>  </span><br>
+                        <span><strong> Género: </strong> <%= producto.genres.name_genre %>  </span><br>
+                        <span><strong> Edición: </strong> <%= producto.editions.name_editions %>  </span><br>
+                    </div>
                 </div>
             </div>
 
