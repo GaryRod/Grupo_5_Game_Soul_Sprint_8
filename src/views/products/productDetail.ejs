@@ -59,6 +59,14 @@
                 <div class="cont__genero">
                     <p>Género <%=': '+ producto.genres.name_genre %> </p>
                 </div>
+                <% if (locals.isLogged && locals.userLogged.type_user) { %>
+                    <div class="cont__edicion">
+                        <a href="/products/edit/<%= producto.id %>" class="añadir__carrito-fav cont__edicion-editar">Editar Producto</a>
+                        <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="añadir__carrito-fav">Eliminar</button>
+                        </form>
+                    </div>
+                <% } %>
             </div>
 
             <div class="contenido">
@@ -83,7 +91,7 @@
                     <% } else { %>
                         <p class="notFoundVideo" id="video-html">Lo sentimos este juego aún no tiene un video</p>
                     <% } %>
-                    
+
                     <div id="ficha-tecnica">
                         <span><strong> Plataforma: </strong><%= producto.consoles.name_console %> </span><br>
                         <span><strong> Stock: </strong><%= producto.stock %>  </span><br>
@@ -92,15 +100,6 @@
                     </div>
                 </div>
             </div>
-
-            <% if (locals.isLogged && locals.userLogged.type_user) { %>
-                <div class="cont__edicion">
-                    <a href="/products/edit/<%= producto.id %>" class="añadir__carrito-fav cont__edicion-editar">Editar Producto</a>
-                    <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="añadir__carrito-fav">Eliminar</button>
-                    </form>
-                </div>
-            <% } %>
         </section>
     </main>
 
