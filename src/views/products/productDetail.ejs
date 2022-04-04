@@ -56,9 +56,6 @@
                     </div>
                 </div>
 
-                <div class="stock">
-                    <span>Stock <%=': ' + producto.stock  %> </span>
-                </div>
                 <div class="cont__genero">
                     <p>Género <%=': '+ producto.genres.name_genre %> </p>
                 </div>
@@ -75,13 +72,17 @@
                     <p id="descripcion-juego">
                         <%= producto.description %>
                     </p>
-                    <iframe width="300" id="video-html" class="cont-video" height="160" src="
-                    <% if (producto.video.includes("https://")) { %>
-                        <%= producto.video %>
-                    <% } else {%>
-                        https://<%= producto.video %>
+                    <% if (producto.video) { %>
+                        <iframe width="300" id="video-html" class="cont-video" height="160" src="
+                        <% if (producto.video.includes("https://")) { %>
+                            <%= producto.video %>
+                        <% } else {%>
+                            https://<%= producto.video %>
+                        <% } %>
+                        " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% } else { %>
+                        <p class="notFoundVideo" id="video-html">Lo sentimos este juego aún no tiene un video</p>
                     <% } %>
-                    " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 

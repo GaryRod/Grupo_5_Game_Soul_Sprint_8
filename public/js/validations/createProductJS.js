@@ -105,11 +105,11 @@ window.addEventListener('load', function(){
         }
     })  
     video.addEventListener('blur', function(){
-        if(this.value == ''){
-            errorVideo.textContent = 'Seleccione una URL'
-            video.classList.add("errorFatal");
-            errorVideo.style.textAlign = 'center'           
-        } else if (!validarURL.test(video.value)) {
+        // if(this.value == ''){
+        //     errorVideo.textContent = 'Seleccione una URL'
+        //     video.classList.add("errorFatal");
+        //     errorVideo.style.textAlign = 'center'           
+        if (video.value != '' && !validarURL.test(video.value)) {
             errorVideo.textContent = 'URL inválida';
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'  
@@ -181,11 +181,11 @@ window.addEventListener('load', function(){
             errores.push(error)
         }
 
-        if(video.value == ''){
-            let error = 'Seleccione una URL'
-            errores.push(error)
-            video.classList.add("errorFatal");          
-        } else if (!validarURL.test(video.value)) {
+        // if(video.value == ''){
+        //     let error = 'Seleccione una URL'
+        //     errores.push(error)
+        //     video.classList.add("errorFatal");          
+        if (video.value != '' && !validarURL.test(video.value)) {
             let error = 'URL inválida';
             errores.push(error)
             video.classList.add("errorFatal");

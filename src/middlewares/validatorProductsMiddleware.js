@@ -15,12 +15,11 @@ const validaciones = [
     body('consola')
         .notEmpty().withMessage("Debes elegir una consola"),
     body('video')
-        .notEmpty().withMessage("Debes agregar una URL")
         .custom((value, {req}) => {
             let video = req.body.video
             let regexEmail = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-                if (!regexEmail.test(video)) {
-                    throw new Error ("URL inválida");
+                if (video != '' && !regexEmail.test(video)) {
+                    throw new Error ("La URL es inválida");
                 }
             return true
         }),
