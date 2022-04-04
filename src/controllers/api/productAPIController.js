@@ -65,7 +65,7 @@ const productAPIController = {
                         name: game.name_game,
                         price: game.price,
                         description: game.description,
-                        image: req.headers.host + "/images/" + game.images[0].img_url,
+                        image: game.images[0].img_url,
                         video: game.video.includes('https://') ? game.video : 'https://' + game.video,
                         genre: game.genres.name_genre,
                         edition: game.editions.name_editions,

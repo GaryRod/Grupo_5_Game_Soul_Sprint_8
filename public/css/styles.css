@@ -943,7 +943,37 @@ select {
     flex-direction: column;
     align-items: center;
 }
-
+#boton-descripcion, #boton-video, .ficha-tecnica{
+    background-color: #337433;
+    color: #fff;
+    border: solid 1px #417541;
+}
+.ficha-tecnica:focus{
+    background-color: #205e20;
+    color: #eee;
+    box-shadow: 2px 2px 2px 1px #38373735
+}
+#boton-descripcion:focus{
+    background-color: #205e20;
+    color: #eee;
+    box-shadow: 2px 2px 2px 1px #38373735
+}
+#boton-video:focus{
+    background-color: #205e20;
+    color: #eee;
+    box-shadow: 2px 2px 2px 1px #38373735
+}
+.cont-datos{
+    border: solid 1px #417541;
+    box-shadow: 2px 2px 2px 1px #00000033;
+}
+#ficha-tecnica{
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding: inherit;
+    font-size: 20px;
+}
 .plataformas{
     color: #eee;
     text-align: center;
@@ -1127,7 +1157,7 @@ select {
 .video, .descripcion, .ficha-tecnica{
     width: 33%;
     padding: 5px;
-    border: solid 1px black;
+    border: solid 1px #417541;
     cursor: pointer;
 }
 
@@ -1139,10 +1169,7 @@ select {
     width: 34%;
 }
 
-.cont-datos button:focus{
-    background-color: #334257;
-    color: #eee;
-}
+
 
 .cont__detalles{
     padding: 20px;
@@ -1364,6 +1391,10 @@ select {
     }
 
     /*-----------ProductDetail---------------*/
+    #ficha-tecnica{
+        width: 55%;
+        font-size: 20px;
+    }
     .juego{
         position: relative;
         flex-direction: row;

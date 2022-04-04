@@ -22,8 +22,8 @@ window.addEventListener('load', function(){
     let errorConsola = document.querySelector('#error_consola')
     let errorVideo = document.querySelector('#error_video')
 
-    let validarURL = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
-
+    //let validarURL = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
+    let validar2 = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
     nombre.addEventListener('blur', function(){
         if(this.value == '' || nombre.value.length < 5){   
         errorNombre.textContent = 'El nombre debe contener mínimo 5 caracteres'
@@ -109,7 +109,7 @@ window.addEventListener('load', function(){
             errorVideo.textContent = 'Seleccione una URL'
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'           
-        } else if (video.value != '' && !validarURL.test(video.value)) {
+        } else if (video.value != '' && !validar2.test(video.value)) {
             errorVideo.textContent = 'URL inválida';
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'  
