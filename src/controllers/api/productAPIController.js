@@ -11,13 +11,13 @@ const productAPIController = {
             include: ["games"]
         })
 
-        let typesGenres = {
-            Accion: genres[0].games.length || 0,
-            Aventura: genres[1].games.length || 0,
-            FPS: genres[2].games.length || 0,
-            Estrategia: genres[3].games.length || 0,
-            Deportes: genres[4].games.length || 0
-        }
+        let typesGenres = [
+            {nombre:'Accion',cantidad: genres[0].games.length || 0},
+            {nombre:'Aventura' ,cantidad: genres[1].games.length || 0},
+            {nombre:'FPS', cantidad: genres[2].games.length || 0},
+            {nombre:'Estrategia', cantidad: genres[3].games.length || 0},
+            {nombre:'Deportes', cantidad: genres[4].games.length || 0}
+        ]
         let response = {
             meta: {
                 count: games.length,
