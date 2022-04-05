@@ -106,12 +106,12 @@ window.addEventListener('load', function(){
             imagen.classList.remove("errorFatal");
         }
     })  
-    video.addEventListener('blur', function(){
-        // if(this.value == ''){
-        //     errorVideo.textContent = 'Seleccione una URL'
-        //     video.classList.add("errorFatal");
-        //     errorVideo.style.textAlign = 'center'           
-        if (video.value != '' && !validarURL.test(video.value)) {
+   video.addEventListener('blur', function(){
+        if(this.value == ''){
+            errorVideo.textContent = 'Seleccione una URL'
+            video.classList.add("errorFatal");
+            errorVideo.style.textAlign = 'center'           
+        } else if (!validar2.test(video.value)) {
             errorVideo.textContent = 'URL inválida';
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'  
@@ -119,7 +119,7 @@ window.addEventListener('load', function(){
             errorVideo.textContent = ''
             video.classList.remove("errorFatal");
         }
-    })  
+    })   //(No tocar!!)
 
     formulario.addEventListener('submit', function(event){
 
