@@ -106,12 +106,8 @@ window.addEventListener('load', function(){
             imagen.classList.remove("errorFatal");
         }
     })  
-   video.addEventListener('blur', function(){
-        if(this.value == ''){
-            errorVideo.textContent = 'Seleccione una URL'
-            video.classList.add("errorFatal");
-            errorVideo.style.textAlign = 'center'           
-        } else if (!validar2.test(video.value)) {
+    video.addEventListener('blur', function(){
+        if (this.value != '' && !validar2.test(video.value)) {
             errorVideo.textContent = 'URL inválida';
             video.classList.add("errorFatal");
             errorVideo.style.textAlign = 'center'  
@@ -129,7 +125,7 @@ window.addEventListener('load', function(){
             let error = 'El nombre debe contener mínimo 5 caracteres'
             errores.push(error)
             nombre.classList.add("errorFatal");
-        }else{
+        } else {
             nombre.classList.remove("errorFatal");
             
         }
@@ -137,9 +133,8 @@ window.addEventListener('load', function(){
             let error = 'La descripción debe contener mínimo 20 caracteres'
             errores.push(error)
             descripcion.classList.add("errorFatal");
-        }else{
+        } else {
             descripcion.classList.remove("errorFatal");
-            
         }
         if(genero.value == '- Género -'){
             let error = 'Seleccione un género'
@@ -159,7 +154,7 @@ window.addEventListener('load', function(){
             let error = 'Seleccione una consola'
             errores.push(error)
             consola.classList.add("errorFatal");
-        }else {
+        } else {
             consola.classList.remove("errorFatal");
         }
         if(precio.value == '' || isNaN(precio.value) == true){
@@ -175,7 +170,7 @@ window.addEventListener('load', function(){
             edicion.classList.remove("errorFatal");
         }
         if(imagen.value == ''){
-            let error = 'Seleccione un archivo de imágen'
+            let error = 'Seleccione un archivo de imagen'
             errores.push(error)
         }
         if (imagen.value != '' && !(/\.(jpg|png|gif|jpeg|JPG|PNG|GIF|JPEG)$/i).test(imagen.value)) {

@@ -36,7 +36,7 @@ const productAPIController = {
                 name: game.name_game,
                 description: game.description,
                 price: game.price,
-                image: game.images[0].img_url,
+                image: `http://${req.headers.host}/img/products/${game.images[0].img_url}`,
                 video: game.video.includes('https://') ? game.video : 'https://' + game.video,
                 genre: game.genres.name_genre,
                 edition: game.editions.name_editions,
@@ -44,7 +44,7 @@ const productAPIController = {
                 stock: game.stock,
                 stock_min: game.stock_min,
                 stock_max: game.stock_max,
-                detail: req.headers.host +  `/api/products/${game.id}`
+                detail: req.headers.host + `/api/products/${game.id}`
             })
             return game
         });
@@ -65,7 +65,7 @@ const productAPIController = {
                         name: game.name_game,
                         price: game.price,
                         description: game.description,
-                        image: game.images[0].img_url,
+                        image: `http://${req.headers.host}/img/products/${game.images[0].img_url}`,
                         video: game.video.includes('https://') ? game.video : 'https://' + game.video,
                         genre: game.genres.name_genre,
                         edition: game.editions.name_editions,
