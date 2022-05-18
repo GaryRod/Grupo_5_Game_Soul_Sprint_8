@@ -22,10 +22,8 @@ window.addEventListener('load', function(){
     let errorConsola = document.querySelector('#error_consola')
     let errorVideo = document.querySelector('#error_video')
 
-    //let validarURL = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
-    let validar2 = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-   
-    
+    let validarURL = /^https:\/\/www.youtube.com\/embed\/[a-zA-Z0-9-_]+$/g
+
     nombre.addEventListener('blur', function(){
         if(this.value == '' || nombre.value.length < 5){   
         errorNombre.textContent = 'El nombre debe contener mínimo 5 caracteres'
@@ -106,16 +104,16 @@ window.addEventListener('load', function(){
             imagen.classList.remove("errorFatal");
         }
     })  
-    video.addEventListener('blur', function(){
-        if (this.value != '' && !validar2.test(video.value)) {
-            errorVideo.textContent = 'URL inválida';
+    video.addEventListener('change', function(){
+        if (this.value != '' && !validarURL.test(video.value)) {
+            errorVideo.textContent = 'URL inválida blur';
             video.classList.add("errorFatal");
-            errorVideo.style.textAlign = 'center'  
+            errorVideo.style.textAlign = 'center'
         } else {
             errorVideo.textContent = ''
             video.classList.remove("errorFatal");
         }
-    })   //(No tocar!!)
+    })
 
     formulario.addEventListener('submit', function(event){
 
@@ -181,9 +179,9 @@ window.addEventListener('load', function(){
         // if(video.value == ''){
         //     let error = 'Seleccione una URL'
         //     errores.push(error)
-        //     video.classList.add("errorFatal");          
+        //     video.classList.add("errorFatal");
         if (video.value != '' && !validarURL.test(video.value)) {
-            let error = 'URL inválida';
+            let error = 'URL inválida submit';
             errores.push(error)
             video.classList.add("errorFatal");
         } else {

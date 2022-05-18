@@ -1,0 +1,156 @@
+.carrito{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: #548ca8;
+    margin-bottom: 15px;
+}
+
+.carrito__juegos, .carrito__cod-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carrito__juegos{
+    padding: 10px;
+    border-bottom: solid 1px #476072;
+}
+
+.carrito__cod-total{
+    padding: 20px;
+}
+
+.carrito__img-juego{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.carrito__juego{
+    font-size: 15px;
+}
+
+.carrito__i-precio-cant,.carrito__total{
+    white-space: nowrap;
+}
+
+.carrito__i-precio-cant{
+    display: flex;
+    gap: 10px;
+}
+
+.carrito__i-trash{
+    color: #eee;
+    width: 20px;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.carrito__i-trash:active{
+    transform: scale(0, 0);
+}
+
+.carrito__cod{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+/* Métodos de pago y pagar*/
+/* Elegir método de pago */
+.pagar-metodos{
+    width: 100%;
+    background-color: #548ca8;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pagar-metodos__titulo{
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.metodo-pago__lista{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border-top: solid 1px #548ca8;
+}
+
+.metodo-pago__label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: solid 1px #548ca8;
+    padding: 10px;
+    background-color: #334257;
+    transition: all .5s;
+    cursor: pointer
+}
+
+.metodo-pago__label:hover{
+    background-color: #476072;
+}
+
+/* Boton de pagar */
+.metodo-pago__pagar{
+    margin: 0 auto;
+}
+
+.metodo-pago__boton{
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    background-color: #4c854c;
+    border: solid 1px #417541;
+    color: #eee;
+    text-align: center;
+    box-shadow: 2px 2px 2px #003;
+    cursor: pointer;
+    transition: color .3s, background-color .5s;
+}
+
+.metodo-pago__boton:hover{
+    background-color: #074e07;
+}
+
+.metodo-pago__boton:active{
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px;
+}
+
+@media (min-width: 480px ) {
+    .carrito__juegos{
+        padding: 20px;
+    }
+
+    .pagar-metodos__titulo{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 769px) {
+    .carrito{
+        width: 80%;
+    }
+
+    .pagar-metodos{
+        flex-direction: row;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .metodo-pago__lista{
+        flex-direction: row;
+        border-left: solid 1px #548ca8;
+    }
+
+    .metodo-pago__label{
+        border-right: solid 1px #548ca8;
+    }
+}

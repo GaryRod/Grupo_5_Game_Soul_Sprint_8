@@ -19,7 +19,7 @@ const validaciones = [
             let video = req.body.video
             let regexEmail = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
                 if (video != '' && !regexEmail.test(video)) {
-                    throw new Error ("La URL es inválida");
+                    throw new Error ("La URL es inválida back");
                 }
             return true
         }),

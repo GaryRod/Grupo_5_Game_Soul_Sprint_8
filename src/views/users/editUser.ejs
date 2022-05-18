@@ -7,8 +7,8 @@
 
     <%- include('../partials/header', { title: "Editar Usuario" })  %>
 
-    <main class="main main--registro-login animate__animated animate__fadeInDown">
-        <section class="form">
+    <main class="main main--editUser-principal animate__animated animate__fadeInDown">
+        <section class="form form--editUser">
 
             <h3>¿Qué deseas editar de tu perfil?</h3>
 
@@ -38,12 +38,12 @@
                 </div>
 
                 <div>
-                    <label for="editUser-foto" class=>Imagen de Perfil:</label>
+                    <label for="editUser-foto">Imagen de Perfil:</label>
                     <input id="editUser-foto" name="editUserfoto" type="file" accept=".png, .jpg">
                 </div>
 
                 <div>
-                    <input type="hidden" value="<%= datosDeUsuario.images[0].img_url %>" name="oldAvatar">
+                    <input type="hidden" value="<%= datosDeUsuario.avatar %>" name="oldAvatar">
                 </div>
                 
                 <button class="button-crearCuenta-iniciarSesion" type="submit">Editar</button>

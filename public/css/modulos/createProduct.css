@@ -1,0 +1,58 @@
+.main--createProduct {
+    margin-top: 25%;
+}
+
+.formCreateProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eee;
+    border-radius: 50px;
+    color: #000;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form__cont-elements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+/* 
+.form__seccion-h5 {
+    text-align: center;
+} */
+
+.input__create-product {
+    width: 60%;
+    border-radius: 5px;
+    outline: none;
+    border: #000 solid 1px;
+}
+
+.boton-enviar-producto {
+    padding: 2%;
+    border-radius: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.boton-enviar-producto:hover {
+    background-color: #476072;
+    color: #eee;
+}
+
+select {
+    width: 50%;
+}
+
+@media (min-width: 1280px) {
+    .main--createProduct {
+        margin-top: 8%;
+    }
+
+    .formCreateProduct {
+        max-width: 100%;
+    }
+}

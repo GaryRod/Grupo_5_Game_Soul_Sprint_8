@@ -24,7 +24,7 @@
 
                         <div class="section-sec__cont-datos">
                             <picture class="section-sec__picture">
-                                <a href="/products/detail/<%= element.id %>">
+                                <a href="/products/detail/<%= element.id %>" class="section-sec__titulo-enlace">
                                     <img src="../images/juegos/<%= element.images[0].img_url%>" alt="El juego es <%= element.name_game %>" class="section-sec__imgs" id="dale">
                                 </a>
                             </picture>
@@ -36,20 +36,12 @@
                 <% }) %>        
             </div>
         </section>
-        <script>
-            function showCart(x){
-                document.getElementById("products-id").style.display = "block";
-            }
-            function closeBtn(){
-                document.getElementById("products-id").style.display = "none";
-            }
-    
-        </script>
     </main>
-
-    <%- include ('../partials/footer') %> 
-    <script src="/js/validations/carritoFinal.js"></script>
     
+    <%- include ('../partials/footer') %> 
+    <script src="/js/mostarCart.js"></script>
+    <script src="/js/carritoFinal.js"></script>
+
 </body>
     
 </html>

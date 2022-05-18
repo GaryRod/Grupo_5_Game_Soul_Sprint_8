@@ -16,10 +16,10 @@ function loadEventListenrs(){
 
 function addProduct(e){
     if(e.target.classList.contains('button-carrito')){
-        
+        // e.preventDefault()
         const selectProduct = e.target.parentElement
+        // console.log(e.target.parentElement)
         readTheContent(selectProduct)
-
     }
 }
 

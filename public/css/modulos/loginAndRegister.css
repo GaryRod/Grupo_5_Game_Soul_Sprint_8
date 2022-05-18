@@ -1,0 +1,188 @@
+.main--registro-login{
+    max-width: 450px;
+    margin: 2% auto;
+    color: #333;
+    background-color: #eee;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Logo */
+.logo-img{
+    width: 30%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.logo{
+    text-align: center;
+}
+
+.lista-iconos-redes{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 0 5px 0;
+}
+
+.lista-iconos-redes li a{
+    color: inherit;
+    display: flex;
+}
+
+.iconos-redes{
+    font-size: 20px;
+    border: solid 1px #808080;
+    border-radius: 50%;
+    padding: 7px 9px;
+    background-color: #eee;
+}
+
+/* Formulario */
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.form__subtitulo-a, .form__a {
+    color: #333;
+    text-decoration: none;
+}
+
+.form__primera-seccion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.form__contenedor-subtitulos {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px;
+}
+
+.form__contenedor-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__inputs {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    color: rgba(0, 4, 55, 0.8);
+    margin-bottom: 3px;
+}
+
+.form__a {
+    font-size: 100%;
+}
+
+.form__contenedor-recuerdame-tyc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px
+}
+
+.form__recuerdame-tyc {
+    cursor: pointer
+}
+
+.form__cont-login-iniciar-sesion {
+    text-align: center;
+    margin: 15px;
+}
+
+.button-crearCuenta-iniciarSesion{
+    margin: auto;
+    padding: 10px;
+    width: 60%;
+    border-radius: 10px;
+    border: solid 1px #000;
+    background-color: #eee;
+    transition: all .5s;
+    cursor: pointer
+}
+
+.button-crearCuenta-iniciarSesion:hover{
+    background-color: #476072;
+    color: white;
+}
+
+.button-iniciarSesion{
+    color: #333;
+    text-decoration: inherit;
+}
+
+.erroresRegistro-ul {
+    margin: 2%;
+}
+
+.errorFatal {
+    background-color: #dc5f5f;
+    color: #fff;
+}
+
+.errorFatal::placeholder{
+    color: rgb(226, 221, 221);
+}
+
+.errorFatalLetras {
+    color: #fff;
+}
+
+.errorFatalDos {
+    background-color: rgb(170, 61, 61);
+}
+
+.errorFatalDosLetras {
+    color: rgb(255, 255, 255);
+}
+
+.text-danger{
+    color:#da1313;
+    list-style-type: none;
+}
+
+@media (min-width: 480px ) {
+    .form__inputs {
+        width: 50%;
+    }
+}
+
+@media (min-width: 769px) {
+    .logo-img{
+        width: 150px;
+    }
+
+    .lista-iconos-redes{
+        margin: 20px 0 25px 0;
+    }
+
+    .form__inputs {
+        width: 50%;
+    }
+
+    .button-crearCuenta-iniciarSesion{
+        width: 200px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .form__inputs {
+        width: 65%;
+    }
+}

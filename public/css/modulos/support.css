@@ -1,0 +1,48 @@
+.support-div-h1 {
+    text-align: center;
+    margin: 0% 0% 5% 0%;
+}
+
+.support-div-principal-barra {
+    margin: 3% 0;
+}
+
+.support-div-principal-boton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 2%;
+    transition: all .5s;
+}
+
+.support-div-principal-boton:hover {
+    background-color: #334257;
+    color: #FFF;
+}
+
+.logito-flecha {
+    transition: transform .5s;
+}
+
+.logito-flecha:hover {
+    transform: rotate(90deg);
+}
+
+.support-div-principal-a {
+    color: #000;
+}
+
+.support-buscador {
+    width: 100%;
+    padding: 2% 0;
+    text-align: center;
+    outline: 0;
+}
+
+@media (min-width: 769px) {
+    .main--support {
+        margin-top: 15%;
+    }
+}

@@ -76,7 +76,7 @@ const productController = {
         let allConsoles = await db.Console.findAll();
         let productToEdit = await db.Game.findByPk(req.params.id)
         const errores = validationResult(req);
-        
+
         if (errores.errors.length > 0 ) {
             return res.render('./products/editProduct',{
                 errors: errores.mapped(),
@@ -108,7 +108,7 @@ const productController = {
 			games_id: req.params.id
 		})
         res.redirect('/')
-    }, 
+    },
     destroy: async (req, res)=>{
         await db.Image.destroy({
             where: {games_id: req.params.id},

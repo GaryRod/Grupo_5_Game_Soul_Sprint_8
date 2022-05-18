@@ -14,7 +14,6 @@ window.addEventListener("load", () => {
         if (hayErroresLogin.errorLoginEmail || hayErroresLogin.errorLoginContra) {
             event.preventDefault();
         }
-
     })
 
     campoEmail.addEventListener("blur", emailLoginValidacion);
@@ -67,5 +66,3 @@ window.addEventListener("load", () => {
         }
     }
 })
-
-

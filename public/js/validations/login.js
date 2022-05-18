@@ -80,10 +80,5 @@ window.addEventListener('load', function (){
             }
             errorPassword.style.textAlign = 'center'
         }
-
     })
-
-
-
-
 })
