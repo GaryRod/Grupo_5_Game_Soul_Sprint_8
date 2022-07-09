@@ -42,11 +42,11 @@ const userController = {
             avatar: req.file ? req.file.filename : 'default.png',
             type_user: String(req.body.email).includes('@gamesoul.com')
             })
-        // return res.redirect('/users/login');
-        let userToLogin = await db.User.findOne({where: {email: req.body.email}});
-        delete userToLogin.password;
-        req.session.userLogged = userToLogin;
-        return res.redirect('./userProfile');
+        return res.redirect('/users/login');
+        // let userToLogin = await db.User.findOne({where: {email: req.body.email}});
+        // delete userToLogin.password;
+        // req.session.userLogged = userToLogin;
+        // return res.redirect('./userProfile');
     },
     loginProcess: async (req, res) => {
         try {
